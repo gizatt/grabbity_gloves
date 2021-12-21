@@ -1,0 +1,4 @@
+models filter=lfs diff=lfs merge=lfs -text
+models/*.STL filter=lfs diff=lfs merge=lfs -text
+models/russels_models/*.stl filter=lfs diff=lfs merge=lfs -text
+**.stl filter=lfs diff=lfs merge=lfs -text
