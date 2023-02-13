@@ -122,7 +122,9 @@ void update_hearts(float dt)
     digitalWrite(HEART_PIN_1, 1); // Always on
 
     bool fan_on = (second % 10) < 5;
-    analogWrite(FAN_PIN, 95 * fan_on + 150);
+    // Only *very* slightly turn it off, on battery power the board can barely
+    // spin it at full power.
+    analogWrite(FAN_PIN, 10 * fan_on + 245);
 }
 
 #define FINGER_HUE 0.08 // Orange
