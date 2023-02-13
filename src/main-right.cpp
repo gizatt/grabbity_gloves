@@ -16,6 +16,7 @@
 #include <Adafruit_NeoPixel.h>
 #include <Adafruit_SSD1306.h>
 #include "bee_movie_wrapped.h"
+#include "utils.h"
 
 #define LED_PIN_1 16
 #define PIXEL_PIN_1 22
@@ -55,19 +56,6 @@ void display_write_header()
 {
   display.setCursor(0, DISPLAY_HEIGHT_START);
   display.print(header_text);
-}
-
-int get_current_hour()
-{
-  return millis() / 3.6E6;
-}
-int get_current_minute()
-{
-  return (millis() / 60000) % 60;
-}
-int get_current_second()
-{
-  return (millis() / 1000) % 60;
 }
 
 char writing_timestamp_buffer[DISPLAY_WIDTH_CHARS];
@@ -157,7 +145,6 @@ void setup()
   display.display();
 }
 
-bool led_state = false;
 float led_pwm = 0.0;
 #define LED_RC 1.0
 void update_led(float dt)
@@ -193,10 +180,10 @@ void update_fingers()
   pixels_1.show();
   pixels_2.show();
 }
+
 #define UPDATE_DT 0.1
 void loop()
 {
-  led_state = !led_state;
   update_led(UPDATE_DT);
   update_fingers();
   display_advance();
